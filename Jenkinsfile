@@ -15,22 +15,27 @@ pipeline {
         }
         stage('Build') { 
             steps {
-                try {
-                    sh 'sudo yarn build'
-                    slackSend color: '#BADA55', message: 'Build Success'
-                }catch(e) {
-                    slackSend color: '#BADA55', message: 'Build Failed'
+                script {
+
+                    try {
+                        sh 'sudo yarn build'
+                        slackSend color: '#BADA55', message: 'Build Success'
+                    }catch(e) {
+                        slackSend color: '#BADA55', message: 'Build Failed'
+                    }
                 }
             }
         }
         stage('Deploy') { 
             steps {
-                try {
-                    sh "printenv"
-                    sh 'sudo yarn deploy'
-                    slackSend color: '#BADA55', message: 'Deploy Success'
-                }catch(e) {
-                    slackSend color: '#BADA55', message: 'Deploy Failed'
+                script {
+                    try {
+                        sh "printenv"
+                        sh 'sudo yarn deploy'
+                        slackSend color: '#BADA55', message: 'Deploy Success'
+                    }catch(e) {
+                        slackSend color: '#BADA55', message: 'Deploy Failed'
+                    }
                 }
             }
         }
