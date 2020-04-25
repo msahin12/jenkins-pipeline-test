@@ -18,7 +18,8 @@ pipeline {
         }
         stage('Deploy') { 
             steps {
-                sh 'sudo yarn deploy' 
+                sh 'sudo yarn deploy'
+                slackSend color: '#BADA55', message: 'Deploy Success'
             }
         }
     }
