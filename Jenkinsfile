@@ -9,11 +9,13 @@ pipeline {
         stage('Test') { 
             steps {
                 sh 'sudo yarn test' 
+                slackSend color: '#BADA55', message: 'Test Success'
             }
         }
         stage('Build') { 
             steps {
                 sh 'sudo yarn build' 
+                slackSend color: '#BADA55', message: 'Build Success'
             }
         }
         stage('Deploy') { 
