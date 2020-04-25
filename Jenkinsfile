@@ -1,9 +1,5 @@
 pipeline {
     agent any
-    environment {
-        AWS_ACCESS_KEY_ID = "AKIAZH3RJURS5ZVRVIND"
-        AWS_SECRET_ACCESS_KEY = "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"
-    }
     stages {
         stage('Install') { 
             steps {
@@ -22,6 +18,8 @@ pipeline {
         }
         stage('Deploy') { 
             steps {
+                sh "printenv"
+                sh "env"
                 sh 'sudo yarn deploy'
                 slackSend color: '#BADA55', message: 'Deploy Success'
             }
